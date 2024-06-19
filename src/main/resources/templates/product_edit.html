@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Обновить</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Обновить</h2>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${message}" class="alert alert-warning text-center">
+            <strong th:text="${message}"></strong>
+        </div>
+
+        <form th:action="${'/products/' + product.id + '/edit'}" method="post" enctype="multipart/form-data"
+              class="row">
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Наименование</p>
+                <input class="form-control" type="text" name="name" required th:value="${product.name}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Марка машины</p>
+                <select name="category" required class="car__filter w-100">
+                    <option th:each="i : ${productCategories}" th:value="${i}" th:data-display="${i.name}" th:selected="${i == product.category}">
+                        <span th:text="${i.name}"></span>
+                    </option>
+                </select>
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Тип двигателя</p>
+                <select name="engine" required class="car__filter w-100">
+                    <option th:each="i : ${productEngines}" th:value="${i}" th:data-display="${i.name}"th:selected="${i == product.engine}">
+                        <span th:text="${i.name}"></span>
+                    </option>
+                </select>
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Год выпуска</p>
+                <input class="form-control" type="number" name="year" min="1900" step="1" max="2100" required th:value="${product.year}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Пробег</p>
+                <input class="form-control" type="number" name="mileage" min="1" step="1" required th:value="${product.mileage}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Страна производства</p>
+                <input class="form-control" type="text" name="origin" required th:value="${product.origin}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Масса</p>
+                <input class="form-control" type="number" name="weight" min="1" step="1" required
+                       th:value="${product.weight}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Мощность</p>
+                <input class="form-control" type="number" name="power" min="1" step="1" required
+                       th:value="${product.power}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Гарантия</p>
+                <input class="form-control" type="number" name="warranty" min="1" step="1" required
+                       th:value="${product.warranty}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Стоимость</p>
+                <input class="form-control" type="number" name="price" min="1" step="1" required
+                       th:value="${product.price}">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Фотографии</p>
+                <input class="form-control" type="file" multiple name="photos" accept="image/*">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="lead mb-1">Характеристики</p>
+                <input class="form-control" type="file" name="file" accept="*/*">
+            </div>
+            <div class="col-12 mb-2">
+                <p class="lead mb-1">Описание</p>
+                <textarea name="description" class="form-control" required th:text="${product.name}"></textarea>
+            </div>
+            <div class="col-12 mb-2">
+                <button class="btn btn-success w-100" type="submit">Обновить</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

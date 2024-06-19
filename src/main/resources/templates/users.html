@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Клиенты</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Клиенты</h2>
+                </div>
+            </div>
+        </div>
+
+        <form action="/users/search" method="get" class="mb-5 row">
+            <div class="col-auto">
+                <a href="/users" class="btn btn-secondary">Сбросить</a>
+            </div>
+            <div class="col">
+                <input type="text" required class="form-control" name="username" th:value="${username}" placeholder="Введите">
+            </div>
+            <div class="col-auto">
+                 <button type="submit" class="btn btn-primary">Поиск</button>
+            </div>
+        </form>
+
+        <div class="row">
+            <div th:each="i : ${users}" th:if="${i.id != user.id}" class="col-3 mb-2">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <img th:src="${'/img/' + i.photo}" alt="photo" class="w-100 shadow rounded">
+                    </div>
+                    <div class="card-body">
+                        <form th:action="${'/users/' + i.id + '/role'}" method="post">
+                            <input type="text" readonly class="form-control mb-2" th:value="${i.username}">
+                            <select th:if="${role == 'ADMIN'}" name="role" required class="car__filter w-100 mb-2">
+                                <option th:each="r : ${roles}" th:value="${r}" th:data-display="${r.name}"
+                                        th:selected="${r == i.role}">
+                                    <span th:text="${r.name}"></span>
+                                </option>
+                            </select>
+                            <button th:if="${role == 'ADMIN'}" type="submit" class="btn btn-success w-100 mb-2">
+                                Обновить
+                            </button>
+                            <a th:if="${role == 'ADMIN'}" th:href="${'/users/' + i.id + '/delete'}"
+                               class="btn btn-danger w-100 mb-2">Удалить</a>
+                            <a th:href="${'/users/' + i.id}" class="btn btn-secondary w-100">Аккаунт</a>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

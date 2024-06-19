@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Свяжитесь с нами</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<div class="breadcrumb-option set-bg" data-setbg="/img/hero-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Свяжитесь с нами</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__text">
+                    <div class="section-title">
+                        <h2>Давайте работать вместе</h2>
+                        <p>
+                            Чтобы запросить дополнительную информацию, свяжитесь с нами через наши социальные сети.
+                        </p>
+                    </div>
+                    <ul>
+                        <li><span>Пн-Пт:</span> с 09:00 до 20:00</li>
+                        <li><span>Сб-Вс:</span> Выходной</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__form">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="ФИО">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Электронная почта">
+                            </div>
+                        </div>
+                        <input type="text" placeholder="Тема">
+                        <textarea placeholder="Текст сообщения"></textarea>
+                        <button type="submit" class="site-btn w-100">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="contact-address">
+    <div class="container">
+        <div class="contact__address__text">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="contact__address__item">
+                        <h4>Беларусь</h4>
+                        <p>Минск</p>
+                        <span>(+375) 29 746 46 88</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="contact__address__item">
+                        <h4>Беларусь</h4>
+                        <p>Минск</p>
+                        <span>(+375) 29 746 46 88</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="contact__address__item">
+                        <h4>Беларусь</h4>
+                        <p>Минск</p>
+                        <span>(+375) 29 746 46 88</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

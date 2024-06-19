@@ -1,0 +1,103 @@
+<nav th:fragment="nav">
+
+    <div class="offcanvas-menu-overlay"></div>
+
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__widget">
+            <a href="#"><i class="fa fa-cart-plus"></i></a>
+            <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
+            <a href="#" class="primary-btn">Add Car</a>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <ul class="offcanvas__widget__add">
+            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
+            <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
+        </ul>
+        <div class="offcanvas__phone__num">
+            <i class="fa fa-phone"></i>
+            <span>(+12) 345 678 910</span>
+        </div>
+        <div class="offcanvas__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <header class="header shadow">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul class="header__top__widget">
+                            <li><i class="fa fa-clock-o"></i>Будни: с 08:00 до 18:00</li>
+                            <li><i class="fa fa-envelope-o"></i>info@info.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="header__top__right">
+                            <div class="header__top__phone">
+                                <i class="fa fa-phone"></i>
+                                <span>(+375) 99 999 99 99</span>
+                            </div>
+                            <div class="header__top__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-1">
+                    <div class="header__logo">
+                        <a href="/"><img src="/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg">
+                    <div class="header__nav">
+                        <nav class="header__menu">
+                            <ul>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="/products">Автомобили</a></li>
+
+                                <li th:if="${role == 'ADMIN' or role == 'MANAGER'}"><a href="/users">Клиенты</a></li>
+                                <li th:if="${role == 'ADMIN'}"><a href="/stats">Аналитика</a></li>
+
+                                <li th:if="${role == 'USER'}"><a href="/apps">Заявки</a></li>
+
+                                <li th:if="${role == 'MANAGER'}"><a href="#">Заявки</a>
+                                    <ul class="dropdown">
+                                        <li th:each="i : ${productAppStatuses}">
+                                            <a th:href="${'/apps/' + i.name()}" th:text="${i.name}"></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/about">О нас</a></li>
+                                <li><a href="/contact">Контакт</a></li>
+
+                                <li th:if="${role != 'NOT'}"><a href="/profile">Профиль</a></li>
+                                <li th:if="${role != 'NOT'}"><a href="/logout">Выход</a></li>
+                                <li th:if="${role == 'NOT'}"><a href="/login">Вход</a></li>
+                                <li th:if="${role == 'NOT'}"><a href="/reg">Регистрация</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <span class="fa fa-bars"></span>
+            </div>
+        </div>
+    </header>
+
+</nav>

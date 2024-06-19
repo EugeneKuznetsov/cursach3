@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Заявки</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<div class="breadcrumb-option set-bg" data-setbg="/img/hero-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Заявки</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="car spad">
+    <div class="container">
+
+        <div class="row">
+            <div th:each="i : ${apps}" class="col-lg-3 col-md-3">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel text-center">
+                        <img th:src="${'/img/' + i.product.photos[0]}" alt="photo">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date" th:text="${i.product.category.name}"></div>
+                            <h5><a th:href="${'/products/' + i.product.id}" th:text="${i.product.name}"></a></h5>
+                            <p class="lead m-0" th:text="${'Статус: ' + i.status.name}"></p>
+                            <p class="lead m-0" th:text="${'Цена: ' + i.price}"></p>
+                            <div th:if="${role == 'MANAGER'}">
+                                <a th:if="${i.status.name() == 'WAITING'}" th:href="${'/apps/' + i.id + '/accepted'}"
+                                   class="btn btn-primary mt-2">Принять</a>
+                                <a th:if="${i.status.name() == 'ACCEPTED'}" th:href="${'/apps/' + i.id + '/done'}"
+                                   class="btn btn-primary mt-2">Выполнено</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>
