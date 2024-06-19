@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${u.fio}"></title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2 th:text="${u.fio}">Профиль</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-5">
+            <a href="/users" class="btn btn-secondary w-25">Назад</a>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <img th:src="${'/img/' + u.photo}" alt="photo" class="rounded shadow w-100">
+            </div>
+            <div class="col bg-light shadow p-2 rounded align-items-center align-content-center justify-content-center">
+                <form th:action="${'/users/' + u.id + '/edit'}" method="post">
+                    <p class="lead mb-1">ФИО</p>
+                    <input class="form-control mb-2" type="text" name="fio" placeholder="ФИО" th:value="${u.fio}">
+                    <p class="lead mb-1">Возраст</p>
+                    <input class="form-control mb-2" type="number" name="age" placeholder="Возраст" th:value="${u.age}" min="18" step="1" max="100">
+                    <p class="lead mb-1">Тел. номер</p>
+                    <input class="form-control mb-2" type="tel" name="tel" placeholder="Тел. номер" th:value="${u.tel}">
+                    <p class="lead mb-1">Эл. почта</p>
+                    <input class="form-control mb-2" type="email" name="email" placeholder="Эл. почта" th:value="${u.email}">
+                    <button class="btn btn-primary w-100" type="submit">Обновить</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div th:each="i : ${u.apps}" class="col-lg-3 col-md-3">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel text-center">
+                        <img th:src="${'/img/' + i.product.photos[0]}" alt="photo">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date" th:text="${i.product.category.name}"></div>
+                            <h5><a th:href="${'/products/' + i.product.id}" th:text="${i.product.name}"></a></h5>
+                            <p class="lead m-0" th:text="${'Статус: ' + i.status.name}"></p>
+                            <p class="lead m-0" th:text="${'Цена: ' + i.price}"></p>
+                            <div th:if="${role == 'MANAGER'}">
+                                <a th:if="${i.status.name() == 'WAITING'}" th:href="${'/apps/' + i.id + '/accepted'}"
+                                   class="btn btn-primary mt-2">Принять</a>
+                                <a th:if="${i.status.name() == 'ACCEPTED'}" th:href="${'/apps/' + i.id + '/done'}"
+                                   class="btn btn-primary mt-2">Выполнено</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <form th:action="${'/users/' + u.id + '/note'}" method="post">
+            <textarea name="text" required class="form-control mb-1" placeholder="Введите текст"></textarea>
+            <button type="submit" class="btn btn-primary w-100">Добавить заметку</button>
+        </form>
+
+        <hr>
+
+        <div th:each="i : ${u.notesUser}" class="mb-2">
+            <p class="lead" th:text="${i.date + ' - ' + i.admin.fio}"></p>
+            <p th:text="${i.text}"></p>
+        </div>
+
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Профиль</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header__discount text-center mb-3">
+                    <p>Скидка на обслуживание пользователям, заполнившим личный профиль!</p>
+                </div>
+                <div class="section-title">
+                    <h2>Профиль</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col">
+                <img th:src="${'/img/' + user.photo}" alt="photo" class="rounded shadow w-100 mb-2">
+                <form action="/profile/photo" method="post" enctype="multipart/form-data">
+                    <input type="file" required class="form-control mb-2" name="photo" accept="image/*">
+                    <button type="submit" class="btn btn-primary w-100">Обновить фото</button>
+                </form>
+            </div>
+            <div class="col bg-light shadow p-2 rounded align-items-center align-content-center justify-content-center">
+
+                <div th:if="${message}" class="alert alert-warning text-center">
+                    <strong th:text="${message}"></strong>
+                </div>
+
+                <form action="/profile/edit" method="post">
+                    <p class="lead mb-1">ФИО</p>
+                    <input class="form-control mb-2" type="text" name="fio" placeholder="ФИО" th:value="${user.fio}">
+                    <p class="lead mb-1">Возраст</p>
+                    <input class="form-control mb-2" type="number" name="age" placeholder="Возраст" th:value="${user.age}" min="18" step="1" max="100">
+                    <p class="lead mb-1">Тел. номер</p>
+                    <input class="form-control mb-2" type="tel" name="tel" placeholder="Тел. номер" th:value="${user.tel}">
+                    <p class="lead mb-1">Эл. почта</p>
+                    <input class="form-control mb-2" type="email" name="email" placeholder="Эл. почта" th:value="${user.email}">
+                    <button class="btn btn-primary w-100" type="submit">Обновить</button>
+                </form>
+            </div>
+        </div>
+
+        <div th:each="i : ${user.notesUser}" class="mb-2">
+            <p class="lead" th:text="${i.date + ' - ' + i.admin.fio}"></p>
+            <p th:text="${i.text}"></p>
+        </div>
+
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>
+
+<style>
+    .header__discount {
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+    .header__discount p {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #d9534f; /* Привлекательный красный цвет, соответствующий стилю */
+    }
+</style>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Главная</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<section class="hero spad set-bg" data-setbg="/img/hero-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="hero__text">
+                    <div class="hero__text__title">
+                        <h2>Добро пожаловать</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Наши услуги</span>
+                    <h2>Что мы предлагаем </h2>
+                    <p>Мы предлагаем широкий ассортимент товаров для вашего автомобиля по самым выгодным ценам.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="services__item">
+                    <img src="/img/services/services-2.png" alt="">
+                    <h5>Покупка</h5>
+                    <p>Мы предлагаем удобный и безопасный процесс покупки автомобиля. В нашем интернет-магазине вы
+                        можете выбрать и приобрести автомобиль онлайн, не выходя из дома. Наши менеджеры помогут вам на
+                        каждом этапе, от выбора автомобиля до оформления документов.</p>
+                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="services__item">
+                    <img src="/img/services/services-3.png" alt="">
+                    <h5>Техническое обслуживание</h5>
+                    <p>Мы предоставляем полный спектр услуг по техническому обслуживанию автомобилей. Наши
+                        квалифицированные мастера проводят диагностику и ремонт любой сложности, чтобы ваш автомобиль
+                        всегда был в отличном состоянии и готов к поездкам.</p>
+                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="services__item">
+                    <img src="/img/services/services-4.png" alt="">
+                    <h5>Поддержка 24/7</h5>
+                    <p>Наша служба поддержки работает круглосуточно, чтобы вы могли получить помощь в любое время.
+                        Мы всегда готовы ответить на ваши вопросы и решить любые проблемы, связанные с вашим автомобилем.
+                        Вы можете связаться с нами по телефону.</p>
+                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="feature__text">
+                    <div class="section-title">
+                        <span>Наша особенность</span>
+                        <h2>Нам доверяют в сфере авто</h2>
+                    </div>
+                    <div class="feature__text__desc">
+                        <p>Мы заслужили доверие наших клиентов благодаря высокому качеству предоставляемых услуг и
+                            профессионализму нашей команды. На протяжении многих лет мы успешно работаем на рынке
+                            автомобилей, предлагая только проверенные и надежные машины.</p>
+                        <p>Наша репутация основана на множестве положительных отзывов и рекомендаций от довольных
+                            клиентов, которые ценят наш индивидуальный подход и внимание к деталям. Мы стремимся
+                            оправдать доверие каждого, кто обращается к нам, и делаем все возможное, чтобы превзойти
+                            ваши ожидания.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-4">
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-1.png" alt="">
+                            </div>
+                            <h6>Двигатель</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-2.png" alt="">
+                            </div>
+                            <h6>Турбо</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-3.png" alt="">
+                            </div>
+                            <h6>Охлаждение</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-4.png" alt="">
+                            </div>
+                            <h6>Подвеска</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-5.png" alt="">
+                            </div>
+                            <h6>Электрический</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <div class="feature__item">
+                            <div class="feature__item__icon">
+                                <img src="/img/feature/feature-6.png" alt="">
+                            </div>
+                            <h6>Тормоза</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chooseus spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="chooseus__text">
+                    <div class="section-title">
+                        <h2>Почему люди выбирают нас</h2>
+                        <p>
+                            Наши клиенты выбирают нас по ряду причин, среди которых:
+                        </p>
+                    </div>
+                    <ul>
+                        <li><i class="fa fa-check-circle"></i>  Надёжность и качество</li>
+                        <li><i class="fa fa-check-circle"></i>  Индивидуальный подход</li>
+                        <li><i class="fa fa-check-circle"></i>  Опыт и профессионализм</li>
+                        <li><i class="fa fa-check-circle"></i>  Конкурентоспособные цены</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chooseus__video set-bg">
+        <img src="/img/chooseus-video.png" alt="">
+        <a href="https://www.youtube.com/watch?v=Xd0Ok-MkqoE"
+           class="play-btn video-popup"><i class="fa fa-play"></i></a>
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

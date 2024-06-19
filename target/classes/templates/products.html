@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Автомобили</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<div class="breadcrumb-option set-bg" data-setbg="/img/hero-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Автомобили</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="car spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="car__sidebar">
+                    <div class="car__filter__btn">
+                        <a th:if="${role == 'MANAGER'}" class="btn btn-primary w-100 mb-2"
+                           href="/products/add">Добавить</a>
+                        <a class="btn btn-secondary w-100 mb-2" href="/products">Сбросить</a>
+                    </div>
+                    <h5 class="my-2">Фильтр</h5>
+                    <form action="/products/search" method="get">
+                        <input type="text" class="form-control mb-2" placeholder="Наименование" name="name"
+                               th:value="${name}">
+                        <button type="submit" class="btn btn-primary w-100">Поиск</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div th:each="i : ${products}" class="col-lg-4 col-md-4">
+                        <a th:href="${'/products/' + i.id}">
+                            <div class="car__item shadow">
+                                <div class="car__item__pic__slider owl-carousel text-center">
+                                    <img th:src="${'/img/' + i.photos[0]}" alt="photo">
+                                </div>
+                                <div class="car__item__text">
+                                    <div class="car__item__text__inner">
+                                        <div class="label-date" th:text="${i.category.name}"></div>
+                                        <h5 th:text="${i.name}"></h5>
+                                        <ul>
+                                            <li th:text="${'Цена: ' + i.price}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>

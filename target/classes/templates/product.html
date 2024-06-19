@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${product.name}"></title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+<nav th:insert="blocks/nav :: nav"></nav>
+
+<div class="breadcrumb-option set-bg" th:data-setbg="${'/img/' + product.photos[0]}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2 th:text="${product.name}"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="car-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="car__details__pic">
+                    <div class="text-center mb-2 align-items-center" style="height: 450px">
+                        <img class="car-big-img" th:src="${'/img/' + product.photos[0]}"
+                             style="max-height: 450px;max-width: 100%">
+                    </div>
+                    <div class="car-thumbs">
+                        <div class="car-thumbs-track car__thumb__slider owl-carousel">
+                            <div th:each="p : ${product.photos}" class="ct" th:data-imgbigurl="${'/img/' + p}">
+                                <img th:src="${'/img/' + p}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p class="lead" th:text="${'Описание: ' + product.description}"></p>
+            </div>
+            <div class="col-lg-4">
+                <div class="car__details__sidebar">
+                    <div class="car__details__sidebar__model">
+                        <a href="/products" class="btn btn-secondary w-100 mb-2">Назад</a>
+                        <a th:href="${'/img/' + product.file}" target="_blank" class="btn btn-info w-100 mb-2">Характеристики</a>
+                        <form th:if="${role == 'USER'}" th:action="${'/products/' + product.id + '/app'}" method="post">
+                            <input type="number" required class="form-control mb-2" name="count"
+                                   placeholder="Введите количество" min="1" step="1">
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Заказать</button>
+                        </form>
+                        <a th:if="${role == 'MANAGER'}" th:href="${'/products/' + product.id + '/edit'}"
+                           class="btn btn-success w-100 mb-2">Обновить</a>
+                        <a th:if="${role == 'MANAGER'}" th:href="${'/products/' + product.id + '/delete'}"
+                           class="btn btn-danger w-100">Удалить</a>
+                        <hr>
+                        <ul>
+                            <li>Просмотры<span th:text="${product.count}"></span></li>
+                            <li>Конверсия<span th:text="${product.conversion + '%'}"></span></li>
+                        </ul>
+                        <ul>
+                            <li>Категория<span th:text="${product.category.name}"></span></li>
+                            <li>Двигатель<span th:text="${product.engine.name}"></span></li>
+                            <li>Год выпуска<span th:text="${product.year}"></span></li>
+                            <li>Цена<span th:text="${product.price}"></span></li>
+                            <li>Пробег<span th:text="${product.mileage}"></span></li>
+                            <li>Страна производства<span th:text="${product.origin}"></span></li>
+                            <li>Масса<span th:text="${product.weight}"></span></li>
+                            <li>Мощность<span th:text="${product.power}"></span></li>
+                            <li>Гарантия<span th:text="${product.warranty}"></span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+
+</html>
